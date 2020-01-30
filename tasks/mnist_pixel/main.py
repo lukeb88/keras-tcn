@@ -16,10 +16,10 @@ def run_task():
                          max_len=x_train[0:1].shape[1],
                          use_skip_connections=True)
 
-    print(f'x_train.shape = {x_train.shape}')
-    print(f'y_train.shape = {y_train.shape}')
-    print(f'x_test.shape = {x_test.shape}')
-    print(f'y_test.shape = {y_test.shape}')
+    print('x_train.shape = {}'.format(x_train.shape))
+    print('y_train.shape = {}'.format(y_train.shape))
+    print('x_test.shape = {}'.format(x_test.shape))
+    print('y_test.shape = {}'.format(y_test.shape))
 
     model.summary()
 
