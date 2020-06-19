@@ -10,9 +10,9 @@ x_test, y_test = data_generator(n=40000, seq_length=600)
 class PrintSomeValues(keras.callbacks.Callback):
 
     def on_epoch_begin(self, epoch, logs={}):
-        print(f'x_test[0:1] = {x_test[0:1]}.')
-        print(f'y_test[0:1] = {y_test[0:1]}.')
-        print(f'pred = {self.model.predict(x_test[0:1])}.')
+        print('x_test[0:1] = {}.'.format(x_test[0:1]))
+        print('y_test[0:1] = {}.'.format(y_test[0:1]))
+        print('pred = {}.'.format(self.model.predict(x_test[0:1])))
 
 
 def run_task():
@@ -28,8 +28,8 @@ def run_task():
                          regression=True,
                          dropout_rate=0)
 
-    print(f'x_train.shape = {x_train.shape}')
-    print(f'y_train.shape = {y_train.shape}')
+    print('x_train.shape = {}'.format(x_train.shape))
+    print('y_train.shape = {}'.format(y_train.shape))
 
     psv = PrintSomeValues()
 

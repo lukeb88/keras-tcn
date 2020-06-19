@@ -112,3 +112,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Docker
+Dockerfile
+Makefile
+docker-compose.yml

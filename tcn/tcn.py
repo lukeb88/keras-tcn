@@ -1,13 +1,13 @@
 from typing import List, Tuple
 
-import keras.backend as K
-import keras.layers
-from keras import optimizers
-from keras.engine.topology import Layer
-from keras.layers import Activation, Lambda
-from keras.layers import Conv1D, SpatialDropout1D
-from keras.layers import Convolution1D, Dense
-from keras.models import Input, Model
+import tensorflow.keras.backend as K
+import tensorflow.keras.layers
+from tensorflow.keras import optimizers
+from tensorflow.keras.layers import Layer
+from tensorflow.keras.layers import Activation, Lambda
+from tensorflow.keras.layers import Conv1D, SpatialDropout1D
+from tensorflow.keras.layers import Convolution1D, Dense
+from tensorflow.keras import Input, Model
 
 
 def residual_block(x, dilation_rate, nb_filters, kernel_size, padding, dropout_rate=0):
@@ -38,7 +38,7 @@ def residual_block(x, dilation_rate, nb_filters, kernel_size, padding, dropout_r
 
     # 1x1 conv to match the shapes (channel dimension).
     prev_x = Conv1D(nb_filters, 1, padding='same')(prev_x)
-    res_x = keras.layers.add([prev_x, x])
+    res_x = tensorflow.keras.layers.add([prev_x, x])
     return res_x, x
 
 
@@ -121,7 +121,7 @@ class TCN:
                                              dropout_rate=self.dropout_rate)
                 skip_connections.append(skip_out)
         if self.use_skip_connections:
-            x = keras.layers.add(skip_connections)
+            x = tensorflow.keras.layers.add(skip_connections)
         if not self.return_sequences:
             x = Lambda(lambda tt: tt[:, -1, :])(x)
         return x
@@ -142,7 +142,7 @@ def compiled_tcn(num_feat,  # type: int
                  name='tcn',  # type: str,
                  opt='adam',
                  lr=0.002):
-    # type: (...) -> keras.Model
+    # type: (...) -> tensorflow.keras.Model
     """Creates a compiled TCN model for a given task (i.e. regression or classification).
     Classification uses a sparse categorical loss. Please input class ids and not one-hot encodings.
 
@@ -210,6 +210,6 @@ def compiled_tcn(num_feat,  # type: int
         output_layer = x
         model = Model(input_layer, output_layer)
         model.compile(get_opt(), loss='mean_squared_error')
-    print(f'model.x = {input_layer.shape}')
-    print(f'model.y = {output_layer.shape}')
+    print('model.x = {}'.format(input_layer.shape))
+    print('model.y = {}'.format(output_layer.shape))
     return model

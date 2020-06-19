@@ -17,8 +17,8 @@ def run_task(sequence_length=8):
                          max_len=x_train[0:1].shape[1],
                          use_skip_connections=False)
 
-    print(f'x_train.shape = {x_train.shape}')
-    print(f'y_train.shape = {y_train.shape}')
+    print('x_train.shape = {}'.format(x_train.shape))
+    print('y_train.shape = {}'.format(y_train.shape))
 
     # model.summary()
 
